@@ -4,24 +4,41 @@ import PropTypes from 'prop-types'
 import { observable, action, computed, runInAction } from 'mobx'
 import 'whatwg-fetch'
 
+
 class ResourceBasedComponent extends Component {
   static PropTypes = {
     resourceType: PropTypes.string.isRequired,
-    params: PropTypes.function
+    params: PropTypes.function,
+    app: PropTypes.object.isRequired
   }
   
   constructor (props) {
     super(props)
-    this.resourceType = props.resourceType
-    this.url = props.url ? props.url : 'https://jsonplaceholder.typicode.com'
+    this.res = props.resourceType
+    this.app = props.app
   }
   
-  @observable resourceType
-  @observable url
+  @observable app
+  @observable res
+  @computed get resourceType() {
+    return this.app.apiConfig.resources[this.res].baseUri.substring(1)
+  }
+  @computed get url() {
+    return this.app.apiConfig.root
+  }
   @observable working = false
   
   @computed get api() {
-    return restful(this.url, fetchBackend(fetch))
+    return restful(this.url, fetchBackend(fetch)).addRequestInterceptor((config) => {
+      const { headers } = config
+
+      // just return modified arguments
+      return {
+        headers : Object.assign(headers, 
+          this.app.apiConfig.headers
+        )
+      }
+    })
   }
   
   @computed get dataContext() {
@@ -42,10 +59,6 @@ class ResourceBasedComponent extends Component {
       this.working = false
     })
   }
-  
-//  componentWillMount() {
-//    this.fetchData()
-//  }
 }
 
 export default ResourceBasedComponent

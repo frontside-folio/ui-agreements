@@ -10,7 +10,7 @@ import ReactTable from "react-table"
 class ResourceBasedTable extends ResourceBasedComponent {
   
   static PropTypes = {
-    columns: PropTypes.array.isRequired
+    columns: PropTypes.arrayOf(PropTypes.object).isRequired
   }
   
   constructor (props) {
@@ -44,6 +44,7 @@ class ResourceBasedTable extends ResourceBasedComponent {
     return (
       <ReactTable
         columns={this.columns.slice()}
+        noDataText="No results found"
         manual // Forces table not to paginate or sort automatically, so we can handle it server-side
         data={this.rows}
         pages={1} // Display the total number of pages
@@ -53,9 +54,12 @@ class ResourceBasedTable extends ResourceBasedComponent {
         defaultPageSize={10}
         className="-striped -highlight"
           >{(state, makeTable, instance) => {
+            
+            let results = state.data.length > 0 ? 'No results found' : `Showing ${state.data.length} results`
+            
             return (
               <div>
-                <h2>Showing {state.data.length} results</h2>
+                <h2>{results}</h2>
                 {makeTable()}
               </div>
             )
