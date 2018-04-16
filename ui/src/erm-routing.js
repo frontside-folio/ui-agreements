@@ -28,7 +28,6 @@ class ERMRouting extends Component {
     return (
       <div className="erm" >
         <Switch >
-          <Route path="/dash" render={() => <Dash/>} />
           <Route path={`${this.props.match.path}`} render={() => <Home/>} />
           <Route component={() => { NoMatch(); }} />
         </Switch>
