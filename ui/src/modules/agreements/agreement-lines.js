@@ -12,7 +12,7 @@ const AgreementLines = observer(({entitlements}) => {
   );
 
   return (
-      <table>
+      <table className="table table-striped">
         <thead>
 	  <tr>
 	    <th>Entitlement ID</th>
