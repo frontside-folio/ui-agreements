@@ -12,4 +12,3 @@ const Routes = ({app, match, ...props}) => (
 )
 
 export default hot(module)(Routes);
-

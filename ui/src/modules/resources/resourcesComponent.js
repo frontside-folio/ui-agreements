@@ -3,7 +3,7 @@ import {observable} from 'mobx'
 import { observer } from 'mobx-react'
 import { hot } from 'react-hot-loader'
 import { Container, Row, Col } from 'reactstrap'
-import Search from '../../components/search'
+import Resources from './resources'
 
 import {tableFormatters, textHighlighter} from '../../lib/helpers'
 
@@ -18,7 +18,9 @@ class ResourcesComponent extends React.Component {
 
   render() {
     return (
-      <p>resources</p>
+      <div>
+        <Resources {...this.props} />
+      </div>
     )
   }
 }

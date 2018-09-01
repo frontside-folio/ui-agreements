@@ -35,6 +35,7 @@ class App extends AppBase {
     // Entries in this list will cause corresponding modules to be auto-loaded
     const defaults = [
       'olf-erm.agreements.user',
+      'olf-erm.resources.user',
       'olf-erm.titles.user',
       'olf-erm.packages.user',
       'olf-erm.kb.user',
