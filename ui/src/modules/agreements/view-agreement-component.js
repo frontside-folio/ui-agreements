@@ -15,12 +15,18 @@ class ViewAgreementComponent extends React.Component {
     super(props);
 
     this.state = {
+      entitlements:[]
     }
+  }
+
+  componentDidMount() {
+    console.log("Fetch data from server...");
+    this.setState({entitlements:{"one":"two","three":"four"}});
   }
 
   render() {
    return (
-      <ViewAgreement {...this.props} />
+      <ViewAgreement {...this.props} entitlements={this.state.entitlements} />
     )
   }
 }
