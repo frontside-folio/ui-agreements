@@ -20,8 +20,11 @@ class ViewAgreementComponent extends React.Component {
   }
 
   componentDidMount() {
-    console.log("Fetch data from server...");
-    this.setState({entitlements:[{"id":"two","three":"four"},{"id":"six","seven":"eight"}]});
+    console.log("Attempt to fetch entitlements");
+    this.props.app.fetchJSON (this.props.app.apiConfig.root+'/erm/entitlements').then((jsonData) => {
+      console.log("Got entitlement data %o",jsonData);
+      this.setState({entitlements:jsonData});
+    })
   }
 
   render() {
