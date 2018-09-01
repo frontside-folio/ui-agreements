@@ -8,7 +8,7 @@ import { Form, FormGroup, Label, Col, Input } from 'reactstrap'
 const AgreementLines = observer(({entitlements}) => {
   
   const data = entitlements.map((row) => 
-      <tr key={row.id} ><td>{row.id}</td></tr>
+      <tr key={row.id} ><td>{row.id}</td> <td>{row.entitlementType}</td> <td>{row.entitlementLabel}</td></tr>
   );
 
   return (
@@ -16,6 +16,8 @@ const AgreementLines = observer(({entitlements}) => {
         <thead>
 	  <tr>
 	    <th>Entitlement ID</th>
+	    <th>Entitlement Type</th>
+	    <th>Title/Package</th>
 	  </tr>
         </thead>
         <tbody>
