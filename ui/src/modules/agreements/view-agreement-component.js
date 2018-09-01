@@ -21,7 +21,7 @@ class ViewAgreementComponent extends React.Component {
 
   componentDidMount() {
     console.log("Fetch data from server...");
-    this.setState({entitlements:{"one":"two","three":"four"}});
+    this.setState({entitlements:[{"id":"two","three":"four"},{"id":"six","seven":"eight"}]});
   }
 
   render() {

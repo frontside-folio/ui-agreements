@@ -5,10 +5,23 @@ import { hot } from 'react-hot-loader'
 import { Form, FormGroup, Label, Col, Input } from 'reactstrap'
 
 
-const AgreementLines = observer((props) => {
+const AgreementLines = observer(({entitlements}) => {
   
+  const data = entitlements.map((row) => 
+      <tr key={row.id} ><td>{row.id}</td></tr>
+  );
+
   return (
-    <div>Agreement Lines</div>
+      <table>
+        <thead>
+	  <tr>
+	    <th>Entitlement ID</th>
+	  </tr>
+        </thead>
+        <tbody>
+          {data}
+        </tbody>
+      </table>
   )
 })
   

@@ -8,7 +8,7 @@ import AgreementLines from './agreement-lines'
 // Folio Accordion:: https://ux.folio.org/docs/guidelines/components/accordion/
 import { AccordionSet, Accordion } from '@folio/stripes-components/lib/Accordion';
 
-const ViewAgreement = observer(( { current, accordions } ) => {
+const ViewAgreement = observer(( { current, accordions, entitlements } ) => {
   
   return (
     <div>
@@ -49,7 +49,7 @@ const ViewAgreement = observer(( { current, accordions } ) => {
         </Accordion>
 
         <Accordion label="Agreement Lines" id="ex-2">
-	  <AgreementLines />
+	  <AgreementLines entitlements={entitlements} />
         </Accordion>
 
         <Accordion label="License" id="ex-3">
