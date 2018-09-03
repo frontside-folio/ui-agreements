@@ -5,53 +5,53 @@ import { hot } from 'react-hot-loader'
 import { Form, FormGroup, Label, Col, Input } from 'reactstrap'
 import AgreementLines from './agreement-lines'
 
-// Folio Accordion:: https://ux.folio.org/docs/guidelines/components/accordion/
+//Folio Accordion:: https://ux.folio.org/docs/guidelines/components/accordion/
 import { AccordionSet, Accordion } from '@folio/stripes-components/lib/Accordion';
 
 const ViewAgreement = observer(( { current, accordions, entitlements } ) => {
   
   return (
     <div>
-
-     <h1>{ current.name } </h1>
-
+      <span>Blah</span>
+      <h1>{ current.name } </h1>
+      
       <AccordionSet>
-
+      
         <Accordion label="Agreement Information" id="ex-1">
           <div className="form-group">
-	    <label>Agreement Name</label>
-	    <p className="form-control-static">{ current.name }</p>
-	  </div>
+            <label>Agreement Name</label>
+            <p className="form-control-static">{ current.name }</p>
+          </div>
           <div className="form-group">
-	    <label>Description</label>
-	    <p className="form-control-static">{ current.description }</p>
-	  </div>
+            <label>Description</label>
+            <p className="form-control-static">{ current.description }</p>
+          </div>
           <div className="form-group">
-	    <label>Cancellation Deadline</label>
-	    <p className="form-control-static"></p>
-	  </div>
+            <label>Cancellation Deadline</label>
+            <p className="form-control-static"></p>
+          </div>
           <div className="form-group">
-	    <label>Content Review Date (Internal)</label>
-	    <p className="form-control-static"></p>
-	  </div>
+            <label>Content Review Date (Internal)</label>
+            <p className="form-control-static"></p>
+          </div>
           <div className="form-group">
-	    <label>Renewal Priority </label>
-	    <p className="form-control-static"></p>
-	  </div>
+            <label>Renewal Priority </label>
+            <p className="form-control-static"></p>
+          </div>
           <div className="form-group">
-	    <label>Is Perpetual?</label>
-	    <p className="form-control-static"></p>
-	  </div>
+            <label>Is Perpetual?</label>
+            <p className="form-control-static"></p>
+          </div>
           <div className="form-group">
-	    <label>License Type</label>
-	    <p className="form-control-static"></p>
-	  </div>
+            <label>License Type</label>
+            <p className="form-control-static"></p>
+          </div>
         </Accordion>
-
+        
         <Accordion label="Agreement Lines" id="ex-2">
-	  <AgreementLines entitlements={entitlements} />
+          <AgreementLines entitlements={entitlements} />
         </Accordion>
-
+        
         <Accordion label="License" id="ex-3">
           <p></p>
         </Accordion>
@@ -68,9 +68,8 @@ const ViewAgreement = observer(( { current, accordions, entitlements } ) => {
           <p></p>
         </Accordion>
       </AccordionSet>
-
     </div>
   )
 })
-  
+
 export default hot(module) (ViewAgreement)
