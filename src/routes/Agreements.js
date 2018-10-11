@@ -39,6 +39,11 @@ class Agreements extends React.Component {
         }
       }),
     },
+    selectedAgreement: {
+      type: 'okapi',
+      path: 'erm/sas/${selectedAgreementId}', // eslint-disable-line no-template-curly-in-string
+      fetch: false,
+    },
     agreementTypeValues: {
       type: 'okapi',
       path: 'erm/refdataValues/SubscriptionAgreement/agreementType',
@@ -61,6 +66,7 @@ class Agreements extends React.Component {
     },
     query: {},
     resultCount: { initialValue: INITIAL_RESULT_COUNT },
+    selectedAgreementId: { initialValue: '' },
   });
 
   static propTypes = {
@@ -101,16 +107,22 @@ class Agreements extends React.Component {
     }
   }
 
-  create = (agreement) => {
+  handleCreate = (agreement) => {
     const { mutator } = this.props;
 
-    mutator.records.POST(agreement)
+    return mutator.records.POST(agreement)
       .then((newAgreement) => {
         mutator.query.update({
           _path: `/erm/agreements/view/${newAgreement.id}`,
           layer: '',
         });
       });
+  }
+
+  handleUpdate = (agreement) => {
+    this.props.mutator.selectedAgreementId.replace(agreement.id);
+
+    return this.props.mutator.selectedAgreement.PUT(agreement);
   }
 
   render() {
@@ -132,7 +144,10 @@ class Agreements extends React.Component {
           editRecordComponent={EditAgreement}
           viewRecordPerms="module.erm.enabled"
           newRecordPerms="module.erm.enabled"
-          onCreate={this.create}
+          onCreate={this.handleCreate}
+          detailProps={{
+            onUpdate: this.handleUpdate
+          }}
           parentResources={this.props.resources}
           parentMutator={this.props.mutator}
           showSingleResult
